@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodieHub - Online Food Ordering</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">🍔 FoodieHub</div>
+
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li>
+                    <button class="cart-btn" onclick="openCart()">
+                        🛒 Cart (<span id="cart-count">0</span>)
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+            <h1>Delicious Food, Delivered Fast!</h1>
+
+            <p>
+                Order your favourite food online and enjoy
+                delicious meals at your doorstep.
+            </p>
+
+            <a href="#menu" class="order-btn">Order Now</a>
+        </div>
+
+    </section>
+
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+
+        <h2>Our Popular Menu</h2>
+
+        <p class="section-description">
+            Choose your favourite food from our menu.
+        </p>
+
+        <!-- Search -->
+        <div class="search-box">
+            <input
+                type="text"
+                id="search"
+                placeholder="Search food..."
+                onkeyup="searchFood()"
+            >
+        </div>
+
+
+        <div class="food-container">
+
+            <!-- Food 1 -->
+            <div class="food-card">
+
+                <div class="food-image">🍕</div>
+
+                <h3>Cheese Pizza</h3>
+
+                <p>
+                    Delicious cheese pizza with fresh toppings.
+                </p>
+
+                <h4>₹249</h4>
+
+                <button onclick="addToCart('Cheese Pizza',249)">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <!-- Food 2 -->
+            <div class="food-card">
+
+                <div class="food-image">🍔</div>
+
+                <h3>Classic Burger</h3>
+
+                <p>
+                    Juicy burger with cheese and fresh vegetables.
+                </p>
+
+                <h4>₹149</h4>
+
+                <button onclick="addToCart('Classic Burger',149)">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <!-- Food 3 -->
+            <div class="food-card">
+
+                <div class="food-image">🍝</div>
+
+                <h3>Italian Pasta</h3>
+
+                <p>
+                    Creamy Italian pasta with delicious sauce.
+                </p>
+
+                <h4>₹199</h4>
+
+                <button onclick="addToCart('Italian Pasta',199)">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <!-- Food 4 -->
+            <div class="food-card">
+
+                <div class="food-image">🍗</div>
+
+                <h3>Fried Chicken</h3>
+
+                <p>
+                    Crispy and tasty fried chicken.
+                </p>
+
+                <h4>₹299</h4>
+
+                <button onclick="addToCart('Fried Chicken',299)">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <!-- Food 5 -->
+            <div class="food-card">
+
+                <div class="food-image">🌯</div>
+
+                <h3>Veg Roll</h3>
+
+                <p>
+                    Fresh vegetables wrapped in a soft roll.
+                </p>
+
+                <h4>₹99</h4>
+
+                <button onclick="addToCart('Veg Roll',99)">
+                    Add to Cart
+                </button>
+
+            </div>
+
+
+            <!-- Food 6 -->
+            <div class="food-card">
+
+                <div class="food-image">🍰</div>
+
+                <h3>Chocolate Cake</h3>
+
+                <p>
+                    Soft and delicious chocolate cake.
+                </p>
+
+                <h4>₹129</h4>
+
+                <button onclick="addToCart('Chocolate Cake',129)">
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+
+        <h2>About FoodieHub</h2>
+
+        <p>
+            FoodieHub is an online food ordering website designed
+            to provide customers with a simple and convenient way
+            to order their favourite food online.
+        </p>
+
+        <div class="features">
+
+            <div>
+                <h3>🚴 Fast Delivery</h3>
+                <p>Get your food delivered quickly.</p>
+            </div>
+
+            <div>
+                <h3>🍴 Fresh Food</h3>
+                <p>Fresh and delicious food every time.</p>
+            </div>
+
+            <div>
+                <h3>💳 Easy Payment</h3>
+                <p>Simple and secure payment process.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+
+        <h2>Contact Us</h2>
+
+        <form onsubmit="submitForm(event)">
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your name"
+                required
+            >
+
+            <input
+                type="email"
+                placeholder="Enter your email"
+                required
+            >
+
+            <textarea
+                placeholder="Enter your message"
+                required
+            ></textarea>
+
+            <button type="submit">
+                Submit
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- Cart Popup -->
+    <div id="cart-modal" class="modal">
+
+        <div class="cart-box">
+
+            <span class="close" onclick="closeCart()">
+                &times;
+            </span>
+
+            <h2>🛒 Your Cart</h2>
+
+            <div id="cart-items"></div>
+
+            <h3>
+                Total: ₹<span id="cart-total">0</span>
+            </h3>
+
+            <button class="checkout-btn" onclick="checkout()">
+                Place Order
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <h3>🍔 FoodieHub</h3>
+
+        <p>
+            Delicious food delivered to your doorstep.
+        </p>
+
+        <p>
+            © 2026 FoodieHub. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
